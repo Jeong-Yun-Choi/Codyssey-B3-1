@@ -23,13 +23,13 @@
 
 종료 전 실행 상태, 종료 요청 완료 알림, 콘솔·CLI 종료 상태를 순서대로 확인한다.
 
-![EC2 종료 전](screenshots/cleanup-resource/01-ec2-instance-before-termination.png)
+![EC2 종료 전](screenshots/cleanup-resources/01-ec2-instance-before-termination.png)
 
-![EC2 종료 요청 완료](screenshots/cleanup-resource/02-ec2-termination-requested.png)
+![EC2 종료 요청 완료](screenshots/cleanup-resources/02-ec2-termination-requested.png)
 
-![EC2 terminated 상태](screenshots/cleanup-resource/03-ec2-instance-terminated.png)
+![EC2 terminated 상태](screenshots/cleanup-resources/03-ec2-instance-terminated.png)
 
-![CLI terminated 상태 검증](screenshots/cleanup-resource/04-ec2-terminated-cli-verification.png)
+![CLI terminated 상태 검증](screenshots/cleanup-resources/04-ec2-terminated-cli-verification.png)
 
 </details>
 
@@ -45,7 +45,7 @@
 
 인스턴스 종료 후 서울 리전에 EBS 볼륨이 없음을 확인했다.
 
-![EBS 볼륨 없음](screenshots/cleanup-resource/05-ebs-volumes-empty.png)
+![EBS 볼륨 없음](screenshots/cleanup-resources/05-ebs-volumes-empty.png)
 
 </details>
 
@@ -60,7 +60,7 @@
 
 별도로 할당한 Elastic IP가 없으므로 릴리스할 EIP도 없었다.
 
-![Elastic IP 미할당](screenshots/cleanup-resource/06-elastic-ip-not-allocated.png)
+![Elastic IP 미할당](screenshots/cleanup-resources/06-elastic-ip-not-allocated.png)
 
 </details>
 
@@ -75,15 +75,15 @@
 
 각 리소스의 삭제 전 상태와 초록색 완료 알림을 확인한다.
 
-![보안 그룹 삭제 전](screenshots/cleanup-resource/07-security-group-before-deletion.png)
+![보안 그룹 삭제 전](screenshots/cleanup-resources/07-security-group-before-deletion.png)
 
-![보안 그룹 삭제 완료](screenshots/cleanup-resource/08-security-group-deleted.png)
+![보안 그룹 삭제 완료](screenshots/cleanup-resources/08-security-group-deleted.png)
 
-![키 페어 삭제 전](screenshots/cleanup-resource/09-key-pair-before-deletion.png)
+![키 페어 삭제 전](screenshots/cleanup-resources/09-key-pair-before-deletion.png)
 
-![키 페어 삭제 완료](screenshots/cleanup-resource/10-key-pair-deleted.png)
+![키 페어 삭제 완료](screenshots/cleanup-resources/10-key-pair-deleted.png)
 
-![로컬 .pem 파일 삭제](screenshots/cleanup-resource/11-local-pem-deleted-masked.png)
+![로컬 .pem 파일 삭제](screenshots/cleanup-resources/11-local-pem-deleted-masked.png)
 
 </details>
 
@@ -100,15 +100,15 @@
 
 Route Table에서 Public Subnet 연결을 해제한 뒤 Route Table과 Subnet을 순서대로 삭제했다.
 
-![Route Table 삭제 전](screenshots/cleanup-resource/12-route-table-before-deletion.png)
+![Route Table 삭제 전](screenshots/cleanup-resources/12-route-table-before-deletion.png)
 
-![Route Table과 Subnet 연결 해제 완료](screenshots/cleanup-resource/13-route-table-subnet-disassociated.png)
+![Route Table과 Subnet 연결 해제 완료](screenshots/cleanup-resources/13-route-table-subnet-disassociated.png)
 
-![Route Table 삭제 완료](screenshots/cleanup-resource/14-route-table-deleted.png)
+![Route Table 삭제 완료](screenshots/cleanup-resources/14-route-table-deleted.png)
 
-![Public Subnet 삭제 전](screenshots/cleanup-resource/15-public-subnet-before-deletion.png)
+![Public Subnet 삭제 전](screenshots/cleanup-resources/15-public-subnet-before-deletion.png)
 
-![Public Subnet 삭제 완료](screenshots/cleanup-resource/16-public-subnet-deleted.png)
+![Public Subnet 삭제 완료](screenshots/cleanup-resources/16-public-subnet-deleted.png)
 
 </details>
 
@@ -122,11 +122,11 @@ Route Table에서 Public Subnet 연결을 해제한 뒤 Route Table과 Subnet을
 
 VPC에 연결된 IGW를 분리한 뒤 삭제했다.
 
-![Internet Gateway 분리 전](screenshots/cleanup-resource/17-internet-gateway-before-detach.png)
+![Internet Gateway 분리 전](screenshots/cleanup-resources/17-internet-gateway-before-detach.png)
 
-![Internet Gateway 분리 완료](screenshots/cleanup-resource/18-internet-gateway-detached.png)
+![Internet Gateway 분리 완료](screenshots/cleanup-resources/18-internet-gateway-detached.png)
 
-![Internet Gateway 삭제 완료](screenshots/cleanup-resource/19-internet-gateway-deleted.png)
+![Internet Gateway 삭제 완료](screenshots/cleanup-resources/19-internet-gateway-deleted.png)
 
 </details>
 
@@ -141,11 +141,11 @@ VPC에 연결된 IGW를 분리한 뒤 삭제했다.
 
 삭제 전 상태, 초록색 삭제 완료 알림, 최종 목록 검증을 순서대로 확인한다.
 
-![VPC 삭제 전](screenshots/cleanup-resource/20-vpc-before-deletion.png)
+![VPC 삭제 전](screenshots/cleanup-resources/20-vpc-before-deletion.png)
 
-![VPC 삭제 완료 알림](screenshots/cleanup-resource/21-vpc-deleted-notification.png)
+![VPC 삭제 완료 알림](screenshots/cleanup-resources/21-vpc-deleted-notification.png)
 
-![VPC 삭제 후 목록 검증](screenshots/cleanup-resource/22-vpc-deletion-verified.png)
+![VPC 삭제 후 목록 검증](screenshots/cleanup-resources/22-vpc-deletion-verified.png)
 
 </details>
 
