@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080" role="img" aria-labelledby="title desc">
+  <title id="title">B3-1 EC2 Nginx 웹 서버 아키텍처</title>
+  <desc id="desc">외부 브라우저의 HTTP 80과 관리자 Mac의 SSH 22가 인터넷, 인터넷 게이트웨이, VPC, 퍼블릭 서브넷을 거쳐 EC2에 도달하는 구조. 라우팅 테이블은 서브넷에 연결되고 기본 경로의 대상으로 IGW를 지정한다. 보안 그룹은 EC2에 적용된다.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#25364d"/></marker>
+    <marker id="arrowSoft" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#61758d"/></marker>
+    <style>
+      .title{font:700 30px Arial,sans-serif;fill:#142033}.label{font:700 23px Arial,sans-serif;fill:#142033}.sub{font:400 19px Arial,sans-serif;fill:#33455b}.small{font:600 17px Arial,sans-serif;fill:#33455b}.tiny{font:400 15px Arial,sans-serif;fill:#52657a}.box{stroke:#25364d;stroke-width:3}.flow{fill:none;stroke:#25364d;stroke-width:4;marker-end:url(#arrow)}.relation{fill:none;stroke:#61758d;stroke-width:3;stroke-dasharray:10 8;marker-end:url(#arrowSoft)}
+    </style>
+  </defs>
+  <rect width="1600" height="1080" fill="#fbfcfe"/>
+  <text x="800" y="52" text-anchor="middle" class="title">B3-1 · EC2 Nginx 웹 서버 아키텍처</text>
+
+  <!-- External clients -->
+  <rect x="105" y="90" width="365" height="122" rx="22" fill="#fce0ea" class="box"/>
+  <text x="288" y="137" text-anchor="middle" class="label">외부 사용자 · 웹 브라우저</text>
+  <text x="288" y="172" text-anchor="middle" class="sub">http://15.165.237.245</text>
+  <rect x="1130" y="90" width="365" height="122" rx="22" fill="#e3efff" class="box"/>
+  <text x="1312" y="137" text-anchor="middle" class="label">관리자 · 내 Mac 터미널</text>
+  <text x="1312" y="172" text-anchor="middle" class="sub">SSH 키 페어(.pem) 사용</text>
+
+  <rect x="590" y="130" width="420" height="105" rx="52" fill="#ffe08a" class="box"/>
+  <text x="800" y="174" text-anchor="middle" class="label">Internet · 인터넷</text>
+  <text x="800" y="207" text-anchor="middle" class="tiny">VPC 외부 공용 네트워크</text>
+  <path d="M470 151 H590" class="flow"/><text x="530" y="139" text-anchor="middle" class="small">HTTP · TCP 80</text>
+  <path d="M1130 182 H1010" class="flow"/><text x="1070" y="170" text-anchor="middle" class="small">SSH · TCP 22</text>
+
+  <!-- VPC -->
+  <rect x="130" y="300" width="1340" height="710" rx="30" fill="#e8f8f4" stroke="#1b6b63" stroke-width="4"/>
+  <text x="180" y="350" class="label">VPC · b3-1-vpc</text>
+  <text x="180" y="382" class="sub">CIDR: 10.0.0.0/16 · ap-northeast-2 (서울)</text>
+
+  <!-- IGW -->
+  <rect x="585" y="410" width="430" height="105" rx="22" fill="#add8f5" class="box"/>
+  <text x="800" y="453" text-anchor="middle" class="label">Internet Gateway (IGW)</text>
+  <text x="800" y="485" text-anchor="middle" class="sub">igw-0768c9ab5611d2f83 · VPC에 연결됨</text>
+  <path d="M800 235 V410" class="flow"/>
+  <text x="820" y="280" class="small">인터넷 트래픽</text>
+
+  <!-- Route table -->
+  <rect x="195" y="520" width="410" height="185" rx="22" fill="#fff0b3" class="box"/>
+  <text x="400" y="565" text-anchor="middle" class="label">Route Table</text>
+  <text x="400" y="596" text-anchor="middle" class="sub">rtb-0dbd4e6395f9d07b4</text>
+  <text x="400" y="650" text-anchor="middle" class="label">0.0.0.0/0 → IGW</text>
+  <path d="M605 575 C670 560 690 530 700 515" class="relation"/>
+  <text x="655" y="548" text-anchor="middle" class="tiny">기본 경로의 대상</text>
+
+  <!-- Public subnet -->
+  <rect x="330" y="750" width="1040" height="205" rx="25" fill="#bcebdc" stroke="#16866f" stroke-width="3" stroke-dasharray="12 8"/>
+  <text x="375" y="795" class="label">Public Subnet · b3-1-public-subnet</text>
+  <text x="375" y="825" class="sub">CIDR: 10.0.1.0/24 · Public IPv4 자동 할당</text>
+  <path d="M400 705 V750" class="relation"/>
+  <text x="420" y="733" class="tiny">서브넷 연결</text>
+
+  <!-- EC2 -->
+  <rect x="610" y="855" width="410" height="76" rx="18" fill="#5cc2e4" class="box"/>
+  <text x="815" y="886" text-anchor="middle" class="label">EC2 · Ubuntu + Nginx</text>
+  <text x="815" y="914" text-anchor="middle" class="sub">Private IP 10.0.1.30 · Public IP 15.165.237.245</text>
+  <path d="M800 515 V855" class="flow"/>
+  <text x="824" y="720" class="small">HTTP 80 / SSH 22</text>
+
+  <!-- Security Group -->
+  <rect x="1090" y="805" width="245" height="135" rx="20" fill="#d8f2c7" class="box"/>
+  <text x="1212" y="842" text-anchor="middle" class="label">Security Group</text>
+  <text x="1212" y="870" text-anchor="middle" class="sub">b3-1-web-sg</text>
+  <text x="1212" y="898" text-anchor="middle" class="tiny">HTTP 80: 0.0.0.0/0</text>
+  <text x="1212" y="921" text-anchor="middle" class="tiny">SSH 22: 내 공인 IP/32</text>
+  <path d="M1090 873 H1020" class="relation"/>
+  <text x="1055" y="859" text-anchor="middle" class="tiny">적용</text>
+
+  <text x="800" y="1048" text-anchor="middle" class="tiny">실선: 외부 접속 트래픽 흐름 · 점선: AWS 리소스 연결/적용 관계</text>
+</svg>
