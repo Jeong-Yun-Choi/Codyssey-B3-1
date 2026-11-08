@@ -15,7 +15,25 @@ IAM 최소 권한과 Security Group 규칙을 분리해 적용했으며, 실습 
 3. IAM 최소 권한과 Security Group의 역할을 구분하여 필요한 접근만 허용한다.
 4. 실습 종료 후 리소스를 삭제하고, 비용 및 보안 측면의 정리 절차를 문서화한다.
 
-## 2. 아키텍처
+## 2. 디렉토리 구조
+
+```text
+/
+├── README.md
+└── docs/
+    ├── architecture.png                 # README에 사용한 아키텍처 다이어그램
+    ├── architecture-v2.svg              # ai로 생성한 아키텍처 다이어그램 
+    ├── cleanup-checklist.md             # 리소스 삭제 및 비용 확인 체크리스트
+    ├── troubleshooting.md               # 장애 원인·조치·재발 방지 보고서
+    └── screenshots/
+        ├── 00~23-*.png                  # IAM·네트워크·EC2 구성 및 검증 캡처
+        ├── cleanup-resources/
+        │   └── 01~22-*.png              # 리소스 삭제·정리 증거
+        └── troubleshooting/
+            └── 01~06-*.png              # 트러블슈팅 증거
+```
+
+## 3. 아키텍처
 
 ![B3-1 웹 서버 아키텍처](docs/architecture.png)
 
@@ -40,7 +58,7 @@ IAM 최소 권한과 Security Group 규칙을 분리해 적용했으며, 실습 
 
 </details>
 
-## 3. 리소스 구성
+## 4. 리소스 구성
 
 | 구성요소 | 값 |
 |---|---|
@@ -58,7 +76,7 @@ IAM 최소 권한과 Security Group 규칙을 분리해 적용했으며, 실습 
 | Public IP | `15.165.237.245` |
 | Private IP | `10.0.1.30` |
 
-## 4. IAM 최소 권한
+## 5. IAM 최소 권한
 
 `b3-1-console-operator` IAM 사용자에 사용자 지정 정책 `B3-1-Minimum-Operations`를 직접 연결했다. 이 정책은 CloudShell 사용과 B3-1 구성에 필요한 EC2·VPC·보안 그룹 작업만 허용했고, `AdministratorAccess`나 S3·RDS 같은 범위 밖 서비스 권한은 부여하지 않았다.
 
@@ -73,9 +91,9 @@ IAM은 **AWS 리소스를 변경할 수 있는 사용자 권한**을 제어한�
 
 </details>
 
-## 5. 네트워크 및 보안 설정
+## 6. 네트워크 및 보안 설정
 
-### 5.1 Route Table
+### 6.1 Route Table
 
 - VPC 내부 경로: `10.0.0.0/16 → local`
 - 인터넷 기본 경로: `0.0.0.0/0 → igw-0768c9ab5611d2f83`
@@ -83,7 +101,7 @@ IAM은 **AWS 리소스를 변경할 수 있는 사용자 권한**을 제어한�
 
 `0.0.0.0/0`은 VPC 내부 경로에 해당하지 않는 모든 IPv4 목적지를 뜻한다. 이 기본 경로의 대상으로 IGW를 지정해 Public Subnet의 인스턴스가 외부 인터넷과 통신하도록 구성했다.
 
-### 5.2 Security Group
+### 6.2 Security Group
 
 | 방향 | 프로토콜/포트 | 소스 또는 대상 | 목적 |
 |---|---|---|---|
@@ -100,7 +118,7 @@ HTTP 80은 누구나 웹 페이지에 접속할 수 있도록 공개했다. SSH 
 
 </details>
 
-## 6. EC2 접속 및 웹 서버 구성
+## 7. EC2 접속 및 웹 서버 구성
 
 개인 컴퓨터에서 다음 명령으로 접속했다.
 
@@ -129,9 +147,9 @@ sudo systemctl enable --now nginx
 
 </details>
 
-## 7. 검증 결과
+## 8. 검증 결과
 
-### 7.1 EC2 내부 및 아웃바운드 통신 검증
+### 8.1 EC2 내부 및 아웃바운드 통신 검증
 
 Public Subnet에 배치된 인스턴스가 인터넷으로 나갈 수 있는지, 그리고 EC2 내부의 Nginx가 HTTP 요청을 처리하는지 확인했다.
 
@@ -155,7 +173,7 @@ curl -i http://localhost/
 
 </details>
 
-### 7.2 외부 검증 A — 브라우저
+### 8.2 외부 검증 A — 브라우저
 
 개인 컴퓨터의 웹 브라우저에서 다음 주소를 열어 페이지를 확인했다.
 
