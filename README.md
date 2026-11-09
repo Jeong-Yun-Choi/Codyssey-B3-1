@@ -28,7 +28,7 @@ IAM 최소 권한과 Security Group 규칙을 분리해 적용했으며, 실습 
     └── screenshots/
         ├── 00~23-*.png                  # IAM·네트워크·EC2 구성 및 검증 캡처
         ├── cleanup-resources/
-        │   └── 01~22-*.png              # 리소스 삭제·정리 증거
+        │   └── 01~27-*.png              # 리소스 삭제·정리 및 비용 확인 증거
         └── troubleshooting/
             └── 01~06-*.png              # 트러블슈팅 증거
 ```
