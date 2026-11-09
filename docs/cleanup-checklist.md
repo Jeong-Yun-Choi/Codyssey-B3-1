@@ -164,6 +164,8 @@ VPC에 연결된 IGW를 분리한 뒤 삭제했다.
 
 ![11월 예상 청구서 확인 2](screenshots/cleanup-resources/26-billing-estimated-november-02.png)
 
+![11월 예상 청구서 서비스별 요금 확인 2](screenshots/cleanup-resources/27-billing-estimated-november-03.png)
+
 </details>
 
 ## 삭제 결과 기록
