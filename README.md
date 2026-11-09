@@ -37,9 +37,9 @@ IAM 최소 권한과 Security Group 규칙을 분리해 적용했으며, 실습 
 
 ![B3-1 웹 서버 아키텍처](docs/architecture.png)
 
-- Internet Gateway는 VPC에 연결했다.
-- Route Table은 Public Subnet에 연결했고, 기본 경로 `0.0.0.0/0 → IGW`로 인터넷 트래픽의 경로를 지정했다.
-- Security Group은 EC2에 적용해 HTTP(80)와 SSH(22) 접근을 제어했다.
+- 실선은 실제 요청·응답의 통신 흐름이다. 외부 사용자 또는 관리자의 요청은 인터넷과 Internet Gateway(IGW)를 거쳐 Public Subnet의 EC2로 전달되고, 응답은 반대 방향으로 반환된다.
+- 점선은 리소스의 구성 관계다. IGW는 VPC에 연결되며, Route Table은 Public Subnet에 연결되고 기본 경로 `0.0.0.0/0 → IGW`로 외부 통신 경로를 지정한다.
+- EC2에는 Public IP를 할당했고, Security Group을 EC2에 적용해 HTTP(80)와 SSH(22) 접근을 제어했다. Security Group은 통신 경유지가 아니라 EC2 네트워크 인터페이스에서 트래픽을 필터링하는 상태 저장형 방화벽이다.
 
 <details>
 <summary>네트워크 구성 캡처</summary>
