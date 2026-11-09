@@ -1,7 +1,7 @@
 # B3-1 리소스 삭제 체크리스트
 
 - 기준 문서: `B3-1.pdf`
-- 상태: 리소스 삭제 완료, 비용 최종 확인 대기
+- 상태: 리소스 삭제 및 비용 최종 확인 완료
 - 목적: 실습 종료 뒤 불필요한 AWS 리소스를 정리하고 과금 위험이 없는지 확인한다.
 
 > PDF에서 정리 완료 확인을 요구하는 리소스는 **EC2, EBS, EIP, Internet Gateway, VPC**의 최소 5종이다. 아래 체크박스는 확인된 항목만 완료 처리한다.
@@ -155,7 +155,22 @@ VPC에 연결된 IGW를 분리한 뒤 삭제했다.
 - [x] EBS 볼륨과 스냅샷이 남아 있지 않은지 확인한다.
 - [x] Elastic IP가 할당된 상태로 남아 있지 않은지 확인한다.
 - [x] Internet Gateway와 B3-1 VPC가 남아 있지 않은지 확인한다.
-- [ ] 비용 관리 화면에서 예상치 못한 사용량 또는 과금 대상 리소스가 없는지 확인한다.
+- [x] 청구서에서 예상치 못한 사용량 또는 과금 대상 리소스가 없는지 확인한다.
+
+<details>
+<summary>청구서 비용 확인 증거 보기</summary>
+
+2026년 10월 발행 청구서와 2026년 11월 예상 청구서를 함께 확인했다. 10월 발행 청구서의 총합계와 11월 예상 청구서의 예상 총합계는 각각 `USD 1.21, USD 2.98`로 표시되었고, 11월 서비스별 요금 화면에서도 청구 금액과 크레딧 반영 결과를 확인했다.
+
+![10월 발행 청구서 확인 1](screenshots/cleanup-resources/23-billing-issued-october-01.png)
+
+![10월 발행 청구서 확인 2](screenshots/cleanup-resources/24-billing-issued-october-02.png)
+
+![11월 예상 청구서 확인 1](screenshots/cleanup-resources/25-billing-estimated-november-01.png)
+
+![11월 예상 청구서 확인 2](screenshots/cleanup-resources/26-billing-estimated-november-02.png)
+
+</details>
 
 ## 삭제 결과 기록
 
